@@ -9,6 +9,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 
 import { performance } from 'perf_hooks';
+import { PERFORMANCE_API } from 'src/app/app.module';
 
 console.log('performance.now() is working in server.ts => ', performance.now());
 
@@ -36,7 +37,14 @@ export function app(): express.Express {
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+    res.render(indexHtml, {
+      req,
+      providers: [
+        { provide: APP_BASE_HREF, useValue: req.baseUrl },
+        { provide: PERFORMANCE_API, useValue: performance },
+
+      ]
+    });
   });
 
   return server;

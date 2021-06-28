@@ -1,8 +1,10 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+export const PERFORMANCE_API = new InjectionToken('performance-api');
 
 @NgModule({
   declarations: [
@@ -12,7 +14,5 @@ import { AppComponent } from './app.component';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
 })
 export class AppModule { }
